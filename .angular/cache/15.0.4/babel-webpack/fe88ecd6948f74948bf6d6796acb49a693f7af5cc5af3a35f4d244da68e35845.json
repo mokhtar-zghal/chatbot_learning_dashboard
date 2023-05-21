@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Constant {}\nConstant.question = 'Question';\nConstant.reponse = 'Reponse';","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
