@@ -1,0 +1,72 @@
+<mat-toolbar color="primary">
+  <span>chatbot Application</span>
+  <span class="example-spacer"></span>
+  <button mat-raised-button (click)="openAddEditIntentForm()">
+    Apprentissage chatbot
+  </button>
+</mat-toolbar>
+
+
+
+<div class="main-body">
+
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Intent(dictionary) name" #input>
+  </mat-form-field>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Intent Column -->
+      <ng-container matColumnDef="intent">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Intent </th>
+        <td mat-cell *matCellDef="let row"> {{row.intent}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="questions">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Questions </th>
+        <td mat-cell *matCellDef="let row">
+          <ul>
+            <li *ngFor="let question of row.questions">{{ question.text }}</li>
+          </ul>
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="responses">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Responses </th>
+        <td mat-cell *matCellDef="let row">
+          <ul>
+            <li *ngFor="let response of row.responses">{{ response.text }}</li>
+          </ul>
+        </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="primary" (click)="openEditForm(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteIntent(row.intent)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of intents"></mat-paginator>
+  </div>
+
+
+</div>
+

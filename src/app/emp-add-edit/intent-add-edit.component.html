@@ -1,0 +1,53 @@
+<div mat-dialog-title>
+    <h1>Dictionary Form</h1>
+</div>
+<form [formGroup]="intentForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Nom dictionnaire</mat-label>
+                <input matInput type="text" placeholder="Ex. greeting" required formControlName="intent">
+            </mat-form-field>
+
+        </div>
+
+        <!-- <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>user input</mat-label>
+                <input [(ngModel)]="selectedItem" id="nouvel-element" matInput type="text" placeholder="Ex. hello/how r u?" formControlName="email">
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="updateItem()">add</button>
+
+        </div>
+
+        <div class="row">
+            <ul id="ma-liste" class="list-group">
+                <li class="list-group-item" *ngFor="let item of items" (click)="selectItem(item)">{{ item }}<button mat-raised-button color="primary" (click)="deleteItem(item)">delete</button></li>
+            </ul>
+
+          </div>
+
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>chatbot output</mat-label>
+                <input matInput type="text" placeholder="Ex. hi what can I do for u/fine thanks" formControlName="email">
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'add'}}</button>
+
+
+        </div>
+
+         -->
+    </div>
+
+
+    <app-chips [title]="question" (itemsChanged)="onQuestionsChanged($event)" [data]="data" ></app-chips>
+    <app-chips [title]="reponse" (itemsChanged)="onResponsesChanged($event)" [data]="data"></app-chips>
+
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button>
+    </div>
+
+</form>
